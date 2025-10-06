@@ -8,7 +8,7 @@ A comprehensive guide to building production-ready Retrieval-Augmented Generatio
 
 ---
 
-## 📚 Table of Contents
+## Table of Contents
 
 1. [Introduction](#introduction)
 2. [Context & Background](#context--background)
@@ -28,7 +28,7 @@ A comprehensive guide to building production-ready Retrieval-Augmented Generatio
 
 ## Introduction
 
-This repository contains learnings from building RAG systems for mid-size enterprise companies (100-1000 employees) in regulated spaces over the past year. If you're expecting another basic tutorial, this isn't it. This is the real-world, battle-tested knowledge from working with pharma companies, banks, law firms, and consulting shops.
+This repository contains learnings from building RAG systems for mid-size enterprise companies (100-1000 employees) in regulated spaces over the past year. This is not a basic tutorial, but rather real-world, battle-tested knowledge from working with pharma companies, banks, law firms, and consulting shops.
 
 **What makes this different:**
 - Real enterprise document challenges (not clean datasets)
@@ -45,7 +45,7 @@ This repository contains learnings from building RAG systems for mid-size enterp
 
 Most enterprise companies have:
 - **10K-50K+ documents** sitting in SharePoint or legacy document management systems
-- **Decades of business documents** that need to become searchable
+- **Decades of business documents** that must become searchable
 - **Not clean datasets** - just real-world, messy documents
 - **Mixed quality** - documents from 1995 scanned typewritten pages mixed with modern 500+ page reports
 
@@ -85,7 +85,7 @@ Enterprise RAG is fundamentally different from tutorial projects:
 
 ### The Problem Nobody Talks About
 
-**Reality Check**: Most tutorials assume your PDFs are perfect. Enterprise documents are absolute garbage.
+**Reality Check**: Most tutorials assume your PDFs are perfect. Enterprise documents often have significant quality issues.
 
 ### The Revelation
 
@@ -207,7 +207,7 @@ Use simple keyword detection to trigger precision mode:
 
 **40% of development time, highest ROI of any component built.**
 
-Most people treat metadata as an afterthought. But enterprise queries are crazy contextual.
+Most people treat metadata as an afterthought. But enterprise queries are highly contextual.
 
 ### Domain-Specific Schemas
 
@@ -246,7 +246,7 @@ Most people treat metadata as an afterthought. But enterprise queries are crazy 
 
 ### Metadata Extraction Strategy
 
-**Avoid LLMs for Metadata Extraction**: They're inconsistent as hell.
+**Avoid LLMs for Metadata Extraction**: They produce inconsistent results.
 
 #### Use Simple Keyword Matching
 
@@ -287,7 +287,7 @@ Use deterministic approaches (regex, pattern matching).
 
 ### When Semantic Search Fails
 
-**Admission**: Pure semantic search fails way more than people admit.
+**Admission**: Pure semantic search fails significantly more often than commonly acknowledged.
 
 In specialized domains like pharma and legal: **15-20% failure rate** (not the assumed 5%)
 
@@ -428,7 +428,7 @@ After testing multiple models, Qwen QWQ-32B emerged as the winner:
 ### Hardware Requirements
 
 #### Capital Cost Considerations
-- **Consumer GPUs**: Won't work for production
+- **Consumer GPUs**: Will not work for production
 - **Recommended**: A100 GPUs (~$17K each)
 - **Reality**: Most enterprise clients already have GPUs from other projects
 
@@ -484,7 +484,7 @@ Deploy 2-3 models for optimal performance:
 - Researchers need dosage info from clinical tables
 - Compliance officers need regulatory data from matrices
 
-**If you can't handle tabular data, you're missing half the value.**
+**If tabular data cannot be handled properly, half the value is lost.**
 
 ### Table Processing Pipeline
 
@@ -687,7 +687,7 @@ Production means:
 
 ### 6. Smaller Models Have Their Place
 
-**Reality**: Don't need 32B parameters for everything.
+**Reality**: 32B parameters are not required for all tasks.
 
 **Action**: 
 - 7B-13B for classification and routing
@@ -727,9 +727,9 @@ Production means:
 
 ### 10. The Real Talk
 
-**Enterprise RAG is way more engineering than ML.**
+**Enterprise RAG is significantly more engineering than ML.**
 
-Most failures aren't from bad models - they're from:
+Most failures are not from bad models - they are from:
 - Underestimating document processing challenges
 - Ignoring metadata complexity
 - Not planning for production infrastructure needs
@@ -795,7 +795,7 @@ Match retrieval level to query complexity.
 4. **Dual embedding**: Embed both structured data AND semantic description
 5. **Track relationships**: Link summary tables to detailed breakdowns
 
-Tables contain critical information - if you can't handle them, you're missing half the value.
+Tables contain critical information - if they cannot be handled properly, half the value is lost.
 
 #### Q: What about PDF to HTML conversion for tables?
 
@@ -814,7 +814,7 @@ Tables contain critical information - if you can't handle them, you're missing h
 #### Q: Should I use LLMs for metadata extraction?
 
 **A**: No, for specific data extraction (dates, names, categories):
-- **Don't use LLMs**: They're inconsistent and unreliable
+- **Do not use LLMs**: They produce inconsistent and unreliable results
 - **Use keyword matching and regex**: Consistent, debuggable, fast
 - **Small models OK for classification**: 7B-13B models work for document type routing
 - **Rule**: Use the simplest approach that works reliably
@@ -825,7 +825,7 @@ Tables contain critical information - if you can't handle them, you're missing h
 1. Start with 100-200 core terms per domain
 2. Build domain-specific categories (for pharma: drug classifications, patient demographics, regulatory categories)
 3. Use simple keyword matching (query contains "FDA"? Filter for regulatory_category: "FDA")
-4. Expand based on queries that don't match well
+4. Expand based on queries that do not match well
 5. Keep it simple and debuggable
 
 #### Q: When does pure semantic search fail?
@@ -863,7 +863,7 @@ Solution: Hybrid approach with graph layer and rule-based fallbacks.
 #### Q: What are the hardware requirements?
 
 **A**: For production deployment:
-- **Don't use consumer GPUs** - insufficient for production
+- **Do not use consumer GPUs** - insufficient for production
 - **Recommended**: A100 GPUs (~$17K each, but clients often have existing infrastructure)
 - **Qwen QWQ-32B quantized** (4-bit): 24GB VRAM (single RTX 4090 works, A100 better for concurrent users)
 - **Deploy 2-3 models**: Main generation (32B), lightweight classification (7B-13B), embedding model
@@ -907,7 +907,7 @@ Solution: Hybrid approach with graph layer and rule-based fallbacks.
 **A**: Simple, proven tools:
 - **Ollama or vLLM**: For model serving
 - **On-premise**: Everything on client infrastructure (regulatory requirement)
-- **No cloud APIs**: Even with zero retention, compliance won't allow it
+- **No cloud APIs**: Even with zero retention, compliance will not allow it
 - **Deployment**: Straightforward with existing GPU infrastructure
 
 #### Q: What metrics matter in production?
@@ -964,7 +964,7 @@ Infrastructure and reliability matter more than model sophistication.
 - Most failures are from underestimating document processing challenges
 - Edge cases with enterprise documents are frustrating
 - When it works, the impact is substantial
-- The demand is "honestly crazy right now"
+- The demand is substantial and rapidly growing
 
 ### Troubleshooting
 
@@ -974,7 +974,7 @@ Infrastructure and reliability matter more than model sophistication.
 - Every department/domain has its own acronym shorthand
 - Build domain-specific acronym databases for context-aware expansion
 - Accept that there will always be new ones (e.g., "EBITDARM" in real estate = EBITDA + rent + management fees)
-- Need separate approaches for each industry vs trying to build universal solution
+- Separate approaches are required for each industry rather than building universal solutions
 
 #### Q: How do I determine if confidence is low?
 
@@ -1060,15 +1060,15 @@ The challenges and solutions documented here are battle-tested in production env
 
 This is a living document based on ongoing learning. The field evolves rapidly, and new challenges emerge with each deployment.
 
-**Feedback Welcome**: If you're implementing enterprise RAG systems and encounter new challenges or solutions, contributions are welcome.
+**Feedback Welcome**: If implementing enterprise RAG systems and encountering new challenges or solutions, contributions are welcome.
 
 ### Final Thoughts
 
 **The Reality**:
-- Enterprise RAG is harder than tutorials make it seem
-- Edge cases with enterprise documents will test your patience
+- Enterprise RAG is more challenging than tutorials suggest
+- Edge cases with enterprise documents present significant challenges
 - Success is 90% engineering, 10% ML
-- Most failures are process and infrastructure, not model quality
+- Most failures stem from process and infrastructure issues, not model quality
 - The demand is substantial and growing
 
 **The Reward**:
