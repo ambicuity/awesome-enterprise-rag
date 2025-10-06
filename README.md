@@ -55,6 +55,7 @@ This guide draws from experience with:
 - **Pharmaceutical Companies**: Research papers, clinical trials, regulatory documents
 - **Financial Institutions**: Financial reports, compliance documents, risk assessments
 - **Law Firms**: Legal briefs, case files, contracts
+- **Human Resources Departments**: Employee records, policies, compliance documents
 - **Consulting Firms**: Client reports, proposals, research documents
 
 ---
@@ -757,6 +758,7 @@ Most failures are not from bad models - they are from:
 - **Financial**: Financial reports, compliance documents, risk assessments  
 - **Legal**: Legal briefs, case files, contracts
 - **Healthcare**: Patient records, medical research, clinical guidelines
+- **Human Resources**: Employee records, policies, compliance documents
 - **Consulting**: Client reports, proposals, research documents
 
 #### Q: What's the typical scale of enterprise RAG deployments?
@@ -860,6 +862,15 @@ Solution: Hybrid approach with graph layer and rule-based fallbacks.
 **GPT-4o**: $200-300+/month for moderate usage  
 **Qwen QWQ-32B**: $30-50/month for same workload
 
+#### Q: Why are open source models important for HR and sensitive employee data?
+
+**A**: HR departments handle highly sensitive employee data that cannot be sent to external APIs:
+- **Data Privacy**: Employee records, performance reviews, compensation data cannot leave company infrastructure
+- **Regulatory Compliance**: GDPR, local data protection laws require data to stay on-premise
+- **Open Source Advantage**: Models like Qwen QWQ-32B run entirely on company infrastructure with zero data leakage risk
+- **Control**: Complete control over data processing, storage, and access
+- Even cloud APIs with "zero retention" policies are not acceptable for HR and employee data in most regulatory environments
+
 #### Q: What are the hardware requirements?
 
 **A**: For production deployment:
@@ -871,8 +882,8 @@ Solution: Hybrid approach with graph layer and rule-based fallbacks.
 #### Q: How fast is inference with Qwen 32B?
 
 **A**: Depends on hardware and concurrency:
-- **Single user**: Variable based on hardware
-- **10 concurrent users** (H100 with optimized context): ~40+ tokens/sec
+- **Low-medium load**: ~40+ tokens/sec
+- **10 concurrent users on single H100 GPU** (with optimized/capped context): ~40+ tokens/sec
 - **Key factor**: Context length - less context allows more concurrent users
 - Response times consistent without API rate limits
 
@@ -883,6 +894,7 @@ Solution: Hybrid approach with graph layer and rule-based fallbacks.
 - **32B models**: Complex reasoning, domain-specific synthesis, multi-document analysis
 - **Right-size models**: Use smallest model that reliably handles each task
 - **Failure point**: Small models fail at "find cardiovascular safety signals across 50 clinical trials"
+- **Improving rapidly**: Newer open source models (e.g., OSS 20B) show significant improvements for their parameter count, with continued advancement expected in coming months
 
 #### Q: How do I fine-tune models for enterprise domains?
 
